@@ -7,6 +7,7 @@ public class Player {
     //Variables
     String id;
     String name;
+    String password;
     int health;
     int damage;
 
@@ -14,6 +15,7 @@ public class Player {
     public Player() {
         this.id = "";
         this.name = "";
+        this.password = "";
         this.health = 100;
         this.damage = 10;
     }
@@ -21,11 +23,13 @@ public class Player {
     //Getters and Setters
     public String getID() { return id; }
     public String getName() { return name; }
+    public String getPassword() { return password; }
     public int getHealth() { return health; }
     public int getDamage() { return damage; }
 
     public void setID(String id) { this.id = id; }
     public void setName(String name) { this.name = name; }
+    public void setPassword(String password) { this.password = password; }
     public void setHealth(int health) { this.health = health; }
     public void setDamage(int damage) { this.damage = damage; }
 
