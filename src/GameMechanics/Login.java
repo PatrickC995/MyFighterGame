@@ -26,5 +26,12 @@ public class Login {
     public void CreateAccount() {
         System.out.println("Enter your Player's name:");
         player.setName(sc.nextLine());
+
+        player.setID(player.GeneratePlayerID());
+
+        // Optional: Show the player info
+        System.out.println("\nAccount Created!");
+        System.out.println("Name: " + player.getName());
+        System.out.println("ID: " + player.getID());
     }
 }
