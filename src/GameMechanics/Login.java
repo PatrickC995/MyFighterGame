@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Login {
 
     Player player = new Player();
+    Navigation nav  = new Navigation(player);
     Scanner sc = new Scanner(System.in);
 
     public void StartGame() {
@@ -29,9 +30,6 @@ public class Login {
 
         player.setID(player.GeneratePlayerID());
 
-        // Optional: Show the player info
-        System.out.println("\nAccount Created!");
-        System.out.println("Name: " + player.getName());
-        System.out.println("ID: " + player.getID());
+        nav.MainMenu();
     }
 }
