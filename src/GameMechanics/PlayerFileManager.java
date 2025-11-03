@@ -33,7 +33,7 @@ public class PlayerFileManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("No saved players found yet.");
+            System.out.println("No saved players found.");
         } catch (IOException e) {
             System.out.println("Error loading player data: " + e.getMessage());
         }

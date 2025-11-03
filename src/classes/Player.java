@@ -78,7 +78,9 @@ public class Player {
     public static Player fromCSV(String csv){
         String[] parts = csv.split(",");
         if(parts.length == 5){
-            return new Player(parts[0], parts[1],
+            return new Player(
+                    parts[0],
+                    parts[1],
                     parts[2],
                     Integer.parseInt(parts[3]),
                     Integer.parseInt(parts[4]));
