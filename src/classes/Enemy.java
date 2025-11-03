@@ -6,9 +6,9 @@ import java.util.List;
 public class Enemy {
 
     //Variables
-    String name;
-    int health;
-    int damage;
+   private String name;
+   private int health;
+   private int damage;
 
     //Getters and Setters
     public String getName() { return name; }
