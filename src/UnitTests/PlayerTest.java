@@ -29,7 +29,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void defaultIdEmpty_setGetName() {
+    public void defaultNameIsEmpty_setGetName() {
 
         // default name should be empty
         assertEquals("", p.getName(), "default name should be empty");
