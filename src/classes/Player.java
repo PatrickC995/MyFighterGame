@@ -21,6 +21,14 @@ public class Player {
         this.damage = 10;
     }
 
+    public Player(String id, String name, String password, int health, int damage) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.health = health;
+        this.damage = damage;
+    }
+
     //Getters and Setters
     public String getID() { return id; }
     public String getName() { return name; }
@@ -59,5 +67,22 @@ public class Player {
         String generated = UUID.randomUUID().toString().substring(0, 5);
         this.id = generated;
         return generated;
+    }
+
+    //Convert to CSV for saving
+    public String toCSV(){
+        return id + "," + name + "," + password + "," + health + "," + damage;
+    }
+
+    //Rebuild from CSV
+    public static Player fromCSV(String csv){
+        String[] parts = csv.split(",");
+        if(parts.length == 5){
+            return new Player(parts[0], parts[1],
+                    parts[2],
+                    Integer.parseInt(parts[3]),
+                    Integer.parseInt(parts[4]));
+        }
+        return null;
     }
 }
