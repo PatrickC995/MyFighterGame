@@ -1,15 +1,16 @@
 package classes;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Player {
 
     //Variables
-    String id;
-    String name;
-    String password;
-    int health;
-    int damage;
+    private String id;
+    private String name;
+    private String password;
+    private int health;
+    private int damage;
 
     //Constructor
     public Player() {
@@ -27,11 +28,24 @@ public class Player {
     public int getHealth() { return health; }
     public int getDamage() { return damage; }
 
-    public void setID(String id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
-    public void setPassword(String password) { this.password = password; }
-    public void setHealth(int health) { this.health = health; }
-    public void setDamage(int damage) { this.damage = damage; }
+    public void setId(String id) {
+        this.id = id == null ? "" : id;
+    }
+    public void setName(String name) {
+        this.name = Objects.requireNonNull(name, "name must not be null");
+    }
+
+    public void setPassword(String password) {
+        this.password = Objects.requireNonNull(password, "password must not be null");
+    }
+
+    public void setHealth(int health) {
+        this.health = Math.max(0, health);
+    }
+
+    public void setDamage(int damage) {
+        this.damage = Math.max(0, damage);
+    }
 
     public void PrintPlayerDetails(Player p){
         System.out.println
@@ -41,8 +55,9 @@ public class Player {
                  "Damage: " + p.damage);
     }
 
-    public String GeneratePlayerID(){
-        String uniqueKey = UUID.randomUUID().toString().substring(0, 5);
-        return uniqueKey;
+    public String GenerateID(){
+        String generated = UUID.randomUUID().toString().substring(0, 5);
+        this.id = generated;
+        return generated;
     }
 }

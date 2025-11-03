@@ -28,7 +28,7 @@ public class Login {
         System.out.println("Enter your Player's name:");
         player.setName(sc.nextLine());
 
-        player.setID(player.GeneratePlayerID());
+        player.setId(player.GenerateID());
 
         nav.MainMenu();
     }
