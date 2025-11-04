@@ -1,14 +1,12 @@
 package GameMechanics;
 
 import classes.Player;
-
 import java.util.Scanner;
 
 public class Navigation {
-    private Player player;
-    Scanner sc = new Scanner(System.in);
+    private final Player player;   // keep as final if you want
+    private final Scanner sc = new Scanner(System.in);
 
-    // Constructor that accepts a Player object
     public Navigation(Player player) {
         this.player = player;
     }
@@ -18,15 +16,25 @@ public class Navigation {
 
         System.out.println(
                 "[1] View Player:\n" +
-                "[2] Fight:\n" +
-                "[0] Exit:\n");
+                        "[2] Fight:\n" +
+                        "[0] Exit:\n");
 
         int choice = sc.nextInt();
         switch (choice) {
-            case 1: player.PrintPlayerDetails(player); ExitToMainMenu(); break;
-            case 2: player.PrintPlayerDetails(player); break;
-            case 0: System.exit(0); break;
-            default: System.out.println("Invalid choice"); break;
+            case 1:
+                ExitToMainMenu();
+                break;
+            case 2:
+                // Create Combat *after* player is initialized
+                Combat combat = new Combat(player);
+                combat.FightRandomEnemy();
+                break;
+            case 0:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
         }
     }
 
@@ -34,8 +42,12 @@ public class Navigation {
         System.out.println("[0] Exit to Main Menu");
         int choice = sc.nextInt();
         switch (choice) {
-            case 0: MainMenu(); break;
-            default: System.out.println("Invalid choice"); break;
+            case 0:
+                MainMenu();
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
         }
     }
 }
