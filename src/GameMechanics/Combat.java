@@ -23,40 +23,53 @@ public class Combat {
         EnemyEncounter(enemies.get(randomIndex));
     }
 
-    public Enemy EnemyEncounter(Enemy enemy){
+    public Enemy EnemyEncounter(Enemy enemy) {
         System.out.println("You have encountered a " + enemy.getName());
         enemy.printEnemyDetails();
+        System.out.println(
+                "Player Name: " + player.getName() +
+                        "\nHealth: " + player.getHealth() +
+                        "\nDamage: " + player.getDamage()
+        );
 
         System.out.println("[1] Fight:\n[2] Run: ");
         int choice = sc.nextInt();
 
-        switch (choice){
-            case 1: FightEnemy(enemy);
+        switch (choice) {
+            case 1:
+                FightEnemy(enemy);
+                break; // ✅ ADDED: prevent falling through to next case
             case 2:
+                // You can handle run logic here if needed
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                EnemyEncounter(enemy);
+                break;
         }
+
         return null;
     }
 
     public void FightEnemy(Enemy enemy) {
-        int newEnemyHealth = enemy.getHealth() - player.getDamage();
+        int newEnemyHealth = Math.max(0, enemy.getHealth() - player.getDamage());
         enemy.setHealth(newEnemyHealth);
-        int newPlayerHealth = player.getHealth() - enemy.getDamage();
+
+        int newPlayerHealth = Math.max(0, player.getHealth() - enemy.getDamage());
         player.setHealth(newPlayerHealth);
 
-        IfPlayerOrEnemyDies(enemy);
-
-        EnemyEncounter(enemy);
-    }
-
-    public void IfPlayerOrEnemyDies(Enemy enemy){
-        if(player.getHealth() <= 0){
+        if (player.getHealth() <= 0) {
             System.out.println("You lose!");
+            return;
         }
-        else if(enemy.getHealth() <= 0){
-            System.out.println("You win");
 
+        if (enemy.getHealth() <= 0) {
+            System.out.println("You win!");
             Navigation navigation = new Navigation(player);
             navigation.ExitToMainMenu();
+            return;
         }
+
+        EnemyEncounter(enemy);
     }
 }

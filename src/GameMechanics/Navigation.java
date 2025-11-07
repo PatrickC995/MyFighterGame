@@ -22,6 +22,7 @@ public class Navigation {
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
+                player.PrintPlayerDetails(player);
                 ExitToMainMenu();
                 break;
             case 2:
