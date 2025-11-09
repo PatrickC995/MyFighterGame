@@ -11,6 +11,7 @@ public class Player {
     private String password;
     private int health;
     private int damage;
+    private int maxHealth;
 
     //Constructor
     public Player() {
@@ -19,6 +20,7 @@ public class Player {
         this.password = "";
         this.health = 100;
         this.damage = 10;
+        this.maxHealth = health;
     }
 
     public Player(String id, String name, String password, int health, int damage) {
@@ -27,6 +29,7 @@ public class Player {
         this.password = password;
         this.health = health;
         this.damage = damage;
+        this.maxHealth = health;
     }
 
     //Getters and Setters
@@ -35,6 +38,7 @@ public class Player {
     public String getPassword() { return password; }
     public int getHealth() { return health; }
     public int getDamage() { return damage; }
+    public int getMaxHealth() { return maxHealth; }
 
     public void setId(String id) {
         this.id = id == null ? "" : id;

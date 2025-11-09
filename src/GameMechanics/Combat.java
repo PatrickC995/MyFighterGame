@@ -38,7 +38,7 @@ public class Combat {
         switch (choice) {
             case 1:
                 FightEnemy(enemy);
-                break; // ✅ ADDED: prevent falling through to next case
+                break;
             case 2:
                 // You can handle run logic here if needed
                 break;
@@ -52,6 +52,8 @@ public class Combat {
     }
 
     public void FightEnemy(Enemy enemy) {
+
+
         int newEnemyHealth = Math.max(0, enemy.getHealth() - player.getDamage());
         enemy.setHealth(newEnemyHealth);
 
@@ -65,6 +67,7 @@ public class Combat {
 
         if (enemy.getHealth() <= 0) {
             System.out.println("You win!");
+            player.setHealth(player.getMaxHealth());
             Navigation navigation = new Navigation(player);
             navigation.ExitToMainMenu();
             return;
