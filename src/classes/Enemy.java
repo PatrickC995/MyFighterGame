@@ -26,12 +26,10 @@ public class Enemy {
         this.damage = damage;
     }
 
-    public void printEnemyDetails() {
-        System.out.println(
-                "Name: " + name + "\n" +
-                        "Health: " + health + "\n" +
-                        "Damage: " + damage
-        );
+    public String PrintEnemyDetails() {
+        return  "Name: " + name + "\n" +
+                "Health: " + health + "\n" +
+                "Damage: " + damage;
     }
 
     public static List<Enemy> initializeEnemyList() {

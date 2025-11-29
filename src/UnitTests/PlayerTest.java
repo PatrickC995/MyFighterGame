@@ -12,6 +12,7 @@ public class PlayerTest {
     Player p = new Player();
 
     @org.junit.jupiter.api.Test
+
     @Test
     public void defaultIdEmpty_generateIdFiveChars_setGetId() {
 

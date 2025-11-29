@@ -25,7 +25,7 @@ public class Combat {
 
     public Enemy EnemyEncounter(Enemy enemy) {
         System.out.println("You have encountered a " + enemy.getName());
-        enemy.printEnemyDetails();
+        System.out.println(enemy.PrintEnemyDetails());
         System.out.println(
                 "Player Name: " + player.getName() +
                         "\nHealth: " + player.getHealth() +
