@@ -8,7 +8,12 @@ import java.util.List;
 
 public class PlayerFileManager {
 
-    private static final String FILE_Path = "players.txt";
+    private static String FILE_Path = "players.txt";
+
+    // ONLY for tests
+    public static void setFilePath(String path) {
+        FILE_Path = path;
+    }
 
     //Save player data to file
     public static void savePlayer(Player player) {
