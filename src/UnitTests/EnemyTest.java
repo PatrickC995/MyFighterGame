@@ -52,7 +52,7 @@ public class EnemyTest {
     }
 
     @Test
-    public void printPlayerDetails(){
+    public void printEnemyDetails(){
         // Arrange
         Enemy e = new Enemy("Orc", 110, 25);
 
