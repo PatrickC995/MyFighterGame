@@ -59,12 +59,11 @@ public class Player {
         this.damage = Math.max(0, damage);
     }
 
-    public void PrintPlayerDetails(Player p){
-        System.out.println
-                ("ID: " + p.id + "\n" +
-                 "Name: " + p.name +  "\n" +
-                 "Health: " + p.health + "\n" +
-                 "Damage: " + p.damage);
+    public String PrintPlayerDetails(Player p) {
+        return "ID: " + p.id + "\n" +
+                "Name: " + p.name + "\n" +
+                "Health: " + p.health + "\n" +
+                "Damage: " + p.damage;
     }
 
     public String GenerateID(){

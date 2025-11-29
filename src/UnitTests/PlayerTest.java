@@ -73,4 +73,20 @@ public class PlayerTest {
         // max health should be the same as health
         assertEquals(p.getHealth(), p.getMaxHealth(), "maxHealth should be 100");
     }
+
+    @Test
+    public void printPlayerDetails(){
+        p.setId("A1234");
+        p.setName("Hero");
+        p.setHealth(100);
+        p.setDamage(100);
+
+        String expected =
+                "ID: A1234" +  "\n" +
+                "Name: Hero\n" +
+                "Health: 100\n" +
+                "Damage: 100";
+
+        assertEquals(expected, p.PrintPlayerDetails(p),"printEnemyDetails should return the exact values that were assigned to the enemy.");
+    }
 }
