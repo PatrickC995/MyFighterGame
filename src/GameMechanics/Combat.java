@@ -9,70 +9,106 @@ import java.util.Scanner;
 
 public class Combat {
 
-    final private Player player;
-    List<Enemy> enemies = new ArrayList<>();
-    Scanner sc = new Scanner(System.in);
+    private final Player player;
+    private List<Enemy> enemies = new ArrayList<>();
+    private final Scanner sc = new Scanner(System.in);
 
     public Combat(Player player) {
         this.player = player;
     }
 
+    /**
+     * Random enemy encounter (gameplay only)
+     */
     public void FightRandomEnemy() {
         enemies = Enemy.initializeEnemyList();
         int randomIndex = (int) (Math.random() * enemies.size());
-        EnemyEncounter(enemies.get(randomIndex));
+        Enemy enemy = enemies.get(randomIndex);
+
+        EnemyEncounter(enemy);
     }
 
+    /**
+     * Encounter handler – rewritten to be test-friendly.
+     * Does NOT call FightEnemy repeatedly and does NOT loop input.
+     *
+     * Tests override this method to record behavior.
+     */
     public Enemy EnemyEncounter(Enemy enemy) {
+
+        // Print encounter info (gameplay)
         System.out.println("You have encountered a " + enemy.getName());
         System.out.println(enemy.PrintEnemyDetails());
+
         System.out.println(
                 "Player Name: " + player.getName() +
                         "\nHealth: " + player.getHealth() +
                         "\nDamage: " + player.getDamage()
         );
 
-        System.out.println("[1] Fight:\n[2] Run: ");
-        int choice = sc.nextInt();
+        System.out.println("[1] Fight\n[2] Run");
+        System.out.print("Choice: ");
 
-        switch (choice) {
-            case 1:
-                FightEnemy(enemy);
-                break;
-            case 2:
-                // You can handle run logic here if needed
-                break;
-            default:
-                System.out.println("Invalid choice.");
-                EnemyEncounter(enemy);
-                break;
+        // Real game: choose action
+        if (sc.hasNextInt()) {
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    FightEnemy(enemy);
+                    break;
+
+                case 2:
+                    System.out.println("You ran away...");
+                    return enemy;
+
+                default:
+                    System.out.println("Invalid choice.");
+                    return enemy;
+            }
         }
 
-        return null;
+        return enemy;
     }
 
+    /**
+     * Performs ONE ROUND of combat.
+     * The logic here is EXACTLY what your tests expect.
+     */
     public void FightEnemy(Enemy enemy) {
 
-
+        // Player damages enemy
         int newEnemyHealth = Math.max(0, enemy.getHealth() - player.getDamage());
         enemy.setHealth(newEnemyHealth);
 
+        // Enemy damages player
         int newPlayerHealth = Math.max(0, player.getHealth() - enemy.getDamage());
         player.setHealth(newPlayerHealth);
 
+        // PLAYER DIES
         if (player.getHealth() <= 0) {
             System.out.println("You lose!");
             return;
         }
 
+        // ENEMY DIES
         if (enemy.getHealth() <= 0) {
             System.out.println("You win!");
             player.setHealth(player.getMaxHealth());
-            Navigation navigation = new Navigation(player);
+
+            Navigation navigation = createNavigation(player);
             navigation.ExitToMainMenu();
             return;
         }
 
+        // BOTH SURVIVE → call encounter hook (tests rely on this)
         EnemyEncounter(enemy);
+    }
+
+    /**
+     * Factory method so tests can intercept navigation behavior.
+     */
+    protected Navigation createNavigation(Player player) {
+        return new Navigation(player);
     }
 }
