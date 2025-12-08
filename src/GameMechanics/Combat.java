@@ -37,6 +37,7 @@ public class Combat {
     public Enemy EnemyEncounter(Enemy enemy) {
 
         // Print encounter info (gameplay)
+//        clearScreen();
         System.out.println("You have encountered a " + enemy.getName());
         System.out.println(enemy.PrintEnemyDetails());
 
@@ -104,7 +105,11 @@ public class Combat {
         // BOTH SURVIVE → call encounter hook (tests rely on this)
         EnemyEncounter(enemy);
     }
-
+//    public static void clearScreen() {
+//        for (int i = 0; i < 15; i++) {
+//            System.out.println();
+//        }
+//    }
     /**
      * Factory method so tests can intercept navigation behavior.
      */

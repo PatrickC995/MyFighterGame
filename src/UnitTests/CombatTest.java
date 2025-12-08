@@ -38,7 +38,7 @@ class CombatFightEnemyTest {
 
     @Test
     void fightEnemy_enemyDies_playerWins() {
-        Player player = new Player("001", "Hero", "pass", 100, 50);
+        Player player = new Player("001", "Hero", "pass", 100, 50,0,1);
         Enemy enemy = new Enemy("Bat", 40, 10);
 
         TestCombat combat = new TestCombat(player);
@@ -51,7 +51,7 @@ class CombatFightEnemyTest {
 
     @Test
     void fightEnemy_playerDies_enemyWins() {
-        Player player = new Player("001", "Hero", "pass", 20, 10);
+        Player player = new Player("001", "Hero", "pass", 20, 10,0,1);
         Enemy enemy = new Enemy("Knight", 100, 50);
 
         TestCombat combat = new TestCombat(player);
@@ -65,7 +65,7 @@ class CombatFightEnemyTest {
 
     @Test
     void fightEnemy_bothSurvive_callsEnemyEncounter() {
-        Player player = new Player("001", "Hero", "pass", 100, 10);
+        Player player = new Player("001", "Hero", "pass", 100, 10,0,1);
         Enemy enemy = new Enemy("Bat", 50, 10);
 
         TestCombat combat = new TestCombat(player);

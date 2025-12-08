@@ -33,7 +33,7 @@ public class PlayerFileManagerTest {
 
     @Test
     void savePlayer_writesPlayerToFile() throws IOException {
-        Player p = new Player("A1234","Hero","pass123",100,20);
+        Player p = new Player("A1234","Hero","pass123",100,20,0,1);
         PlayerFileManager.savePlayer(p);
 
         List<String> lines = Files.readAllLines(TEST_FILE);
@@ -43,9 +43,9 @@ public class PlayerFileManagerTest {
 
     @Test
     void loadPlayers_readsPlayersFromFile() throws IOException {
-        String csv1 = "A1234,Hero,pass123,100,20";
-        String csv2 = "B5678,Mage,abc,80,10";
-        String csv3 = "279d7,Pat,pat123,100,10";
+        String csv1 = "A1234,Hero,pass123,100,20,0,1";
+        String csv2 = "B5678,Mage,abc,80,10,0,1";
+        String csv3 = "279d7,Pat,pat123,100,10,0,1";
 
         Files.writeString(TEST_FILE, csv1 + "\n" + csv2 + "\n" + csv3);
 
@@ -59,7 +59,7 @@ public class PlayerFileManagerTest {
 
     @Test
     void authenticatePlayer_returnsPlayerWhenCorrect() throws IOException {
-        String csv = "279d7,Pat,pat123,100,10";
+        String csv = "279d7,Pat,pat123,100,10,0,1";
         Files.writeString(TEST_FILE, csv);
 
         Player player = PlayerFileManager.authenticatePlayer("Pat","pat123");
@@ -70,7 +70,7 @@ public class PlayerFileManagerTest {
 
     @Test
     void authenticatePlayer_returnsNullWhenIncorrect() throws IOException {
-        String csv = "279d7,Pat,pat123,100,10";
+        String csv = "279d7,Pat,pat123,100,10,0,1";
         Files.writeString(TEST_FILE, csv);
 
         Player player = PlayerFileManager.authenticatePlayer("Pat","wrongpass");

@@ -12,6 +12,8 @@ public class Player {
     private int health;
     private int damage;
     private int maxHealth;
+    private int xp;
+    private int level;
 
     //Constructor
     public Player() {
@@ -21,15 +23,19 @@ public class Player {
         this.health = 100;
         this.damage = 10;
         this.maxHealth = health;
+        this.xp = 0;
+        this.level = 1;
     }
 
-    public Player(String id, String name, String password, int health, int damage) {
+    public Player(String id, String name, String password, int health, int damage, int xp, int level) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.health = health;
         this.damage = damage;
         this.maxHealth = health;
+        this.xp = xp;
+        this.level = level;
     }
 
     //Getters and Setters
@@ -39,6 +45,8 @@ public class Player {
     public int getHealth() { return health; }
     public int getDamage() { return damage; }
     public int getMaxHealth() { return maxHealth; }
+    public int getXP() { return xp; }
+    public int getLevel() { return level; }
 
     public void setId(String id) {
         this.id = id == null ? "" : id;
@@ -46,24 +54,23 @@ public class Player {
     public void setName(String name) {
         this.name = Objects.requireNonNull(name, "name must not be null");
     }
-
-    public void setPassword(String password) {
-        this.password = Objects.requireNonNull(password, "password must not be null");
-    }
-
+    public void setPassword(String password) {this.password = Objects.requireNonNull(password, "password must not be null");}
     public void setHealth(int health) {
         this.health = Math.max(0, health);
     }
-
     public void setDamage(int damage) {
         this.damage = Math.max(0, damage);
     }
+    public void setXP(int xp) {this.xp = Math.max(0, xp);}
+    public void setLevel(int level) {this.level = Math.max(0, level);}
 
     public String PrintPlayerDetails(Player p) {
         return "ID: " + p.id + "\n" +
                 "Name: " + p.name + "\n" +
                 "Health: " + p.health + "\n" +
-                "Damage: " + p.damage;
+                "Damage: " + p.damage + "\n" +
+                "XP: " + p.xp + "\n" +
+                "Level: " + p.level;
     }
 
     public String GenerateID(){
@@ -74,19 +81,21 @@ public class Player {
 
     //Convert to CSV for saving
     public String toCSV(){
-        return id + "," + name + "," + password + "," + health + "," + damage;
+        return id + "," + name + "," + password + "," + health + "," + damage + "," + xp + "," + level;
     }
 
     //Rebuild from CSV
     public static Player fromCSV(String csv){
         String[] parts = csv.split(",");
-        if(parts.length == 5){
+        if(parts.length == 7){
             return new Player(
                     parts[0],
                     parts[1],
                     parts[2],
                     Integer.parseInt(parts[3]),
-                    Integer.parseInt(parts[4]));
+                    Integer.parseInt(parts[4]),
+                    Integer.parseInt(parts[5]),
+                    Integer.parseInt(parts[6]));
         }
         return null;
     }
