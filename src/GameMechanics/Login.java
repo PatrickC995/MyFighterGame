@@ -55,7 +55,7 @@ public class Login {
 
         player.setId(player.GenerateID());
 
-        pfm.savePlayer(player);
+        //pfm.savePlayer(player);
 
         this.nav = new Navigation(this.player);
         nav.MainMenu();

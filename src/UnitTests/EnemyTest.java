@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class EnemyTest {
 
     @Test
-    public void defaultValues_setAndGetName() {
+    public void defaultValues_setAndGetName_setAndGetHealth_setAndGetDamage() {
         // Arrange
-        Enemy e = new Enemy("", 0, 0);
+        Enemy e = new Enemy("", 0, 0,0);
 
         // Assert default name
         assertEquals("", e.getName(), "Default name should be empty");
@@ -19,24 +19,12 @@ public class EnemyTest {
         // Act
         String testName = "Villain";
         e.setName(testName);
+        e.setHealth(120);
+        e.setDamage(15);
 
         // Assert
         assertEquals(testName, e.getName(), "getName should return value set using setName");
-    }
-
-    @Test
-    public void setAndGetHealth() {
-        Enemy e = new Enemy("", 0, 0);
-
-        e.setHealth(120);
         assertEquals(120, e.getHealth());
-    }
-
-    @Test
-    public void setAndGetDamage() {
-        Enemy e = new Enemy("", 0, 0);
-
-        e.setDamage(15);
         assertEquals(15, e.getDamage());
     }
 
@@ -54,7 +42,7 @@ public class EnemyTest {
     @Test
     public void printEnemyDetails(){
         // Arrange
-        Enemy e = new Enemy("Orc", 110, 25);
+        Enemy e = new Enemy("Orc", 110, 25,5);
 
         String expected =
                 "Name: Orc\n" +

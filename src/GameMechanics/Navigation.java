@@ -4,7 +4,7 @@ import classes.Player;
 import java.util.Scanner;
 
 public class Navigation {
-    private final Player player;   // keep as final if you want
+    private final Player player;
     private final Scanner sc = new Scanner(System.in);
 
     public Navigation(Player player) {

@@ -2,6 +2,7 @@ package classes;
 
 import java.util.Objects;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class Player {
 
@@ -77,6 +78,12 @@ public class Player {
         String generated = UUID.randomUUID().toString().substring(0, 5);
         this.id = generated;
         return generated;
+    }
+
+    public void LevelUp(){
+        if(this.xp >= 2){
+            this.level += 1;
+        }
     }
 
     //Convert to CSV for saving

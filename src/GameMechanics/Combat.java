@@ -17,9 +17,6 @@ public class Combat {
         this.player = player;
     }
 
-    /**
-     * Random enemy encounter (gameplay only)
-     */
     public void FightRandomEnemy() {
         enemies = Enemy.initializeEnemyList();
         int randomIndex = (int) (Math.random() * enemies.size());
@@ -95,6 +92,8 @@ public class Combat {
         // ENEMY DIES
         if (enemy.getHealth() <= 0) {
             System.out.println("You win!");
+            player.setXP(enemy.getXpLoss());
+            player.LevelUp();
             player.setHealth(player.getMaxHealth());
 
             Navigation navigation = createNavigation(player);
