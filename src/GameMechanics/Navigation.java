@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Navigation {
     private final Player player;
+    private final PlayerFileManager pfm = new PlayerFileManager();
     private final Scanner sc = new Scanner(System.in);
 
     public Navigation(Player player) {
@@ -31,6 +32,7 @@ public class Navigation {
                 combat.FightRandomEnemy();
                 break;
             case 0:
+                pfm.updatePlayer(player.getID(),  player);
                 System.exit(0);
                 break;
             default:

@@ -59,4 +59,31 @@ public class PlayerFileManager {
         }
         return null; // Authentication failed
     }
+
+    // Update a player in the file
+    public boolean updatePlayer(String id, Player updatedPlayer) {
+        List<Player> players = loadPlayers();
+        boolean playerFound = false;
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getID().equals(id)) {
+                players.set(i, updatedPlayer);
+                playerFound = true;
+                break;
+            }
+        }
+        if (!playerFound) {
+            return false;
+        }
+        // Overwrite the file with the updated list
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_Path))) {
+            for (Player player : players) {
+                writer.write(player.toCSV());
+                writer.newLine();
+            }
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error updating player data: " + e.getMessage());
+            return false;
+        }
+    }
 }
