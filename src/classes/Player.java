@@ -2,7 +2,6 @@ package classes;
 
 import java.util.Objects;
 import java.util.UUID;
-import java.util.logging.Level;
 
 public class Player {
 
@@ -81,8 +80,10 @@ public class Player {
     }
 
     public void LevelUp(){
-        if(this.xp >= 2){
-            this.level += 1;
+        while (getXP() >= 10) {
+            setLevel(getLevel() + 1);
+            setXP(getXP() - 10);
+            System.out.println("Level up!");
         }
     }
 

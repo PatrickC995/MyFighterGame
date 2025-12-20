@@ -92,7 +92,8 @@ public class Combat {
         // ENEMY DIES
         if (enemy.getHealth() <= 0) {
             System.out.println("You win!");
-            player.setXP(enemy.getXpLoss());
+            player.setXP(player.getXP() + enemy.getXpLoss());
+            System.out.println("you gained " + enemy.getXpLoss() + " xp");
             player.LevelUp();
             player.setHealth(player.getMaxHealth());
 
