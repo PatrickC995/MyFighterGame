@@ -1,5 +1,7 @@
 package classes;
 
+import MyLibrary.colour;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +34,8 @@ public class Enemy {
 
     public String PrintEnemyDetails() {
         return  "Name: " + name + "\n" +
-                "Health: " + health + "\n" +
-                "Damage: " + damage;
+                "Health: " + colour.ANSI_GREEN + health + colour.ANSI_RESET + "\n" +
+                "Damage: " + colour.ANSI_RED + damage + colour.ANSI_RESET;
     }
 
     public static List<Enemy> initializeEnemyList() {

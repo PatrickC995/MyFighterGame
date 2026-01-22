@@ -1,5 +1,6 @@
 package GameMechanics;
 
+import MyLibrary.colour;
 import classes.Enemy;
 import classes.Player;
 import MyLibrary.clearScreen;
@@ -41,8 +42,8 @@ public class Combat {
 
         System.out.println(
                 "Player Name: " + player.getName() +
-                        "\nHealth: " + player.getHealth() +
-                        "\nDamage: " + player.getDamage()
+                        "\nHealth: " + colour.ANSI_GREEN + player.getHealth() + colour.ANSI_RESET +
+                        "\nDamage: " + colour.ANSI_RED + player.getDamage() + colour.ANSI_RESET
         );
 
         System.out.println("[1] Fight\n[2] Run");
@@ -97,7 +98,7 @@ public class Combat {
             clearScreen.clearScreen();
             System.out.println("You win!");
             player.setXP(player.getXP() + enemy.getXpLoss());
-            System.out.println("you gained " + enemy.getXpLoss() + " xp");
+            System.out.println("you gained " + colour.ANSI_PURPLE + enemy.getXpLoss() + colour.ANSI_RESET + " xp");
             player.LevelUp();
             player.setHealth(player.getMaxHealth());
 
