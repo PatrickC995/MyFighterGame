@@ -1,6 +1,8 @@
 package GameMechanics;
 
 import classes.Player;
+import MyLibrary.clearScreen;
+
 import java.util.Scanner;
 
 public class Login {
@@ -33,6 +35,7 @@ public class Login {
         String password = sc.nextLine().trim();
 
         Player authenticated = pfm.authenticatePlayer(name, password);
+        clearScreen.clearScreen();
 
         if (authenticated != null) {
             this.player = authenticated;

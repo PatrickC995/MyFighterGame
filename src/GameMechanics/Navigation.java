@@ -1,6 +1,8 @@
 package GameMechanics;
 
 import classes.Player;
+import MyLibrary.clearScreen;
+
 import java.util.Scanner;
 
 public class Navigation {
@@ -23,11 +25,13 @@ public class Navigation {
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
+                clearScreen.clearScreen();
                 System.out.println(player.PrintPlayerDetails(player));
                 ExitToMainMenu();
                 break;
             case 2:
                 // Create Combat *after* player is initialized
+                clearScreen.clearScreen();
                 Combat combat = new Combat(player);
                 combat.FightRandomEnemy();
                 break;
@@ -46,6 +50,7 @@ public class Navigation {
         int choice = sc.nextInt();
         switch (choice) {
             case 0:
+                clearScreen.clearScreen();
                 MainMenu();
                 break;
             default:

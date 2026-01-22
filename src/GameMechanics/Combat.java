@@ -1,7 +1,9 @@
 package GameMechanics;
 
+import MyLibrary.colour;
 import classes.Enemy;
 import classes.Player;
+import MyLibrary.clearScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +42,8 @@ public class Combat {
 
         System.out.println(
                 "Player Name: " + player.getName() +
-                        "\nHealth: " + player.getHealth() +
-                        "\nDamage: " + player.getDamage()
+                        "\nHealth: " + colour.ANSI_GREEN + player.getHealth() + colour.ANSI_RESET +
+                        "\nDamage: " + colour.ANSI_RED + player.getDamage() + colour.ANSI_RESET
         );
 
         System.out.println("[1] Fight\n[2] Run");
@@ -74,6 +76,7 @@ public class Combat {
      * The logic here is EXACTLY what your tests expect.
      */
     public void FightEnemy(Enemy enemy) {
+        clearScreen.clearScreen();
 
         // Player damages enemy
         int newEnemyHealth = Math.max(0, enemy.getHealth() - player.getDamage());
@@ -85,15 +88,17 @@ public class Combat {
 
         // PLAYER DIES
         if (player.getHealth() <= 0) {
+            clearScreen.clearScreen();
             System.out.println("You lose!");
             return;
         }
 
         // ENEMY DIES
         if (enemy.getHealth() <= 0) {
+            clearScreen.clearScreen();
             System.out.println("You win!");
             player.setXP(player.getXP() + enemy.getXpLoss());
-            System.out.println("you gained " + enemy.getXpLoss() + " xp");
+            System.out.println("you gained " + colour.ANSI_PURPLE + enemy.getXpLoss() + colour.ANSI_RESET + " xp");
             player.LevelUp();
             player.setHealth(player.getMaxHealth());
 
@@ -105,11 +110,6 @@ public class Combat {
         // BOTH SURVIVE → call encounter hook (tests rely on this)
         EnemyEncounter(enemy);
     }
-//    public static void clearScreen() {
-//        for (int i = 0; i < 15; i++) {
-//            System.out.println();
-//        }
-//    }
     /**
      * Factory method so tests can intercept navigation behavior.
      */

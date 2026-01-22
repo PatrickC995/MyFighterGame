@@ -3,6 +3,8 @@ package classes;
 import java.util.Objects;
 import java.util.UUID;
 
+import MyLibrary.colour;
+
 public class Player {
 
     //Variables
@@ -67,10 +69,10 @@ public class Player {
     public String PrintPlayerDetails(Player p) {
         return "ID: " + p.id + "\n" +
                 "Name: " + p.name + "\n" +
-                "Health: " + p.health + "\n" +
-                "Damage: " + p.damage + "\n" +
-                "XP: " + p.xp + "\n" +
-                "Level: " + p.level;
+                "Health: " + colour.ANSI_GREEN + p.health + colour.ANSI_RESET + "\n" +
+                "Damage: " + colour.ANSI_RED + p.damage + colour.ANSI_RESET + "\n" +
+                "XP: " + colour.ANSI_PURPLE + p.xp + colour.ANSI_RESET + "\n" +
+                "Level: " + colour.ANSI_YELLOW + p.level +  colour.ANSI_RESET;
     }
 
     public String GenerateID(){
