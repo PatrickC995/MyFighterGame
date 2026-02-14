@@ -59,7 +59,11 @@ public class Combat {
                     break;
 
                 case 2:
+                    player.setHealth(player.getMaxHealth());
                     System.out.println("You ran away...");
+                    Navigation navigation = createNavigation(player);
+                    navigation.ExitToMainMenu();
+
                     return enemy;
 
                 default:
