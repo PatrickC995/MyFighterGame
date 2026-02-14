@@ -15,6 +15,8 @@ public class Combat {
     private List<Enemy> enemies = new ArrayList<>();
     private final Scanner sc = new Scanner(System.in);
 
+    boolean runOnceEnemyEncounter = false;
+
     public Combat(Player player) {
         this.player = player;
     }
@@ -36,8 +38,11 @@ public class Combat {
     public Enemy EnemyEncounter(Enemy enemy) {
 
         // Print encounter info (gameplay)
-//        clearScreen();
-        System.out.println("You have encountered a " + enemy.getName());
+        if(!runOnceEnemyEncounter){
+            System.out.println("You have encountered a " + enemy.getName());
+            runOnceEnemyEncounter = true;
+        }
+
         System.out.println(enemy.PrintEnemyDetails());
 
         System.out.println(
