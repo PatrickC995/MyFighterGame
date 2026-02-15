@@ -10,12 +10,18 @@ public class Navigation {
     private final PlayerFileManager pfm = new PlayerFileManager();
     private final Scanner sc = new Scanner(System.in);
 
+    private static boolean runOnceWelcomePlayer = false;
+
     public Navigation(Player player) {
         this.player = player;
     }
 
     public void MainMenu() {
-        System.out.println("Welcome " + player.getName() + ", your journey begins here\n");
+
+        if (!runOnceWelcomePlayer) {
+            System.out.println("Welcome " + player.getName() + ", your journey begins here\n");
+            runOnceWelcomePlayer = true;
+        }
 
         System.out.println(
                 "[1] View Player:\n" +
