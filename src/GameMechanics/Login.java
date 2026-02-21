@@ -29,7 +29,7 @@ public class Login {
 
     public void login(){
         System.out.println("Enter your Player's name:");
-         String name = sc.nextLine().trim();
+        String name = sc.nextLine().trim();
 
         System.out.println("Enter your Player's password:");
         String password = sc.nextLine().trim();
