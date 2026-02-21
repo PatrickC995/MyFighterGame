@@ -80,7 +80,7 @@ public class Login {
                 continue;
             }
 
-            return name;
+            return name; // valid username
         }
     }
 
