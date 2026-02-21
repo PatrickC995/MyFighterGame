@@ -44,6 +44,7 @@ public class Login {
             nav.MainMenu();
         } else {
             System.out.println("Login failed. Invalid name or password.");
+            login();
         }
     }
 
