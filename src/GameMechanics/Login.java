@@ -29,7 +29,7 @@ public class Login {
 
     public void login(){
         System.out.println("Enter your Player's name:");
-        String name = sc.nextLine().trim();
+         String name = sc.nextLine().trim();
 
         System.out.println("Enter your Player's password:");
         String password = sc.nextLine().trim();
@@ -53,8 +53,8 @@ public class Login {
         System.out.println("Enter your Player's name:");
         player.setName(sc.nextLine().trim());
 
-        System.out.println("Enter your Player's password:");
-        player.setPassword(sc.nextLine().trim());
+        String password = PasswordValidation();  // get validated password
+        player.setPassword(password);
 
         player.setId(player.GenerateID());
 
@@ -62,6 +62,53 @@ public class Login {
 
         this.nav = new Navigation(this.player);
         nav.MainMenu();
+    }
+
+    public String PasswordValidation() {
+        while (true) {
+            System.out.println("Enter your Player's password:");
+            String password = sc.nextLine().trim();
+
+            if (password.isEmpty()) {
+                System.out.println("You must enter a password.");
+                continue;
+            }
+
+            if (password.length() < 4 || password.length() > 16) {
+                System.out.println("Password must be between 4 and 16 characters.");
+                continue;
+            }
+
+            boolean hasUppercase = false;
+
+            for (char c : password.toCharArray()) {
+                if (Character.isUpperCase(c)) {
+                    hasUppercase = true;
+                    break;
+                }
+            }
+
+            if (!hasUppercase) {
+                System.out.println("Password must contain at least one uppercase letter.");
+                continue;
+            }
+
+            boolean hasDigit = false;
+
+            for (char c : password.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    hasDigit = true;
+                    break;
+                }
+            }
+
+            if (!hasDigit) {
+                System.out.println("Password must contain at least one number.");
+                continue;
+            }
+
+            return password; // valid password
+        }
     }
 
     public Player getPlayer() {
