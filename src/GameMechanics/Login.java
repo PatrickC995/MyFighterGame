@@ -50,8 +50,8 @@ public class Login {
     public void CreateAccount() {
         this.player = new Player();
 
-        System.out.println("Enter your Player's name:");
-        player.setName(sc.nextLine().trim());
+        String username = UsernameValidation();
+        player.setName(username);
 
         String password = PasswordValidation();  // get validated password
         player.setPassword(password);
@@ -62,6 +62,25 @@ public class Login {
 
         this.nav = new Navigation(this.player);
         nav.MainMenu();
+    }
+
+    public String UsernameValidation(){
+        while (true) {
+            System.out.println("Enter your Player's name:");
+            String name = sc.nextLine().trim();
+
+            if(name.isEmpty()){
+                System.out.println("You must enter a Username:");
+                continue;
+            }
+
+            if(name.length() < 3 || name.length() > 16){
+                System.out.println("Username must be between 3 and 16 characters.");
+                continue;
+            }
+
+            return name;
+        }
     }
 
     public String PasswordValidation() {
