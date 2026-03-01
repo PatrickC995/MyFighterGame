@@ -20,4 +20,20 @@ public class Potion {
     public void setDamagePotion(int damagePotion) {this.damagePotion = damagePotion;}
     public void setDamagePotionCount(int damagePotionCount) {this.damagePotionCount = damagePotionCount;}
 
+    //Constructor
+    public Potion() {
+        this.healthPotion = 5;
+        this.healthPotionCount = 0;
+        this.damagePotion = 2;
+        this.damagePotionCount = 0;
+    }
+
+    public Potion(int healthPotion, int healthPotionCount, int damagePotion, int damagePotionCount) {
+      this.healthPotion = healthPotion;
+      this.healthPotionCount = healthPotionCount;
+      this.damagePotion = damagePotion;
+      this.damagePotionCount = damagePotionCount;
+    }
+
+
 }
