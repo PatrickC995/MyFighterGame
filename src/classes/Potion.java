@@ -2,8 +2,6 @@ package classes;
 
 import MyLibrary.randomNumberGenerator;
 
-import java.util.Random;
-
 public class Potion {
 
     randomNumberGenerator rng;
