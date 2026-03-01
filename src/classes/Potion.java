@@ -1,6 +1,13 @@
 package classes;
 
+import MyLibrary.randomNumberGenerator;
+
+import java.util.Random;
+
 public class Potion {
+
+    randomNumberGenerator rng;
+
     // Health Potion
     private int healthPotion;
     private int healthPotionCount;
@@ -36,4 +43,12 @@ public class Potion {
     }
 
 
+    public void randomPotion() {
+        switch (rng.randomNumber(4)) {
+            case 1:
+                this.healthPotionCount += 1;
+            case 2:
+                this.damagePotionCount += 1;
+        }
+    }
 }
