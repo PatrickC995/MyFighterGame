@@ -76,15 +76,15 @@ public class Player {
     public void setHealthPotionCount(int healthPotionCount) {this.healthPotionCount = healthPotionCount;}
     public void setDamagePotionCount(int damagePotionCount) {this.damagePotionCount = damagePotionCount;}
 
-    public String PrintPlayerDetails(Player p) {
-            return "ID: " + p.id + "\n" +
+    public void PrintPlayerDetails(Player p) {
+            System.out.println( "ID: " + p.id + "\n" +
                 "Name: " + p.name + "\n" +
                 "Health: " + colour.ANSI_GREEN + p.health + colour.ANSI_RESET + "\n" +
                 "Damage: " + colour.ANSI_RED + p.damage + colour.ANSI_RESET + "\n" +
                 "XP: " + colour.ANSI_PURPLE + p.xp + colour.ANSI_RESET + "\n" +
                 "Level: " + colour.ANSI_YELLOW + p.level +  colour.ANSI_RESET + "\n" +
                 "Health Potion Count: " + colour.ANSI_GREEN + p.healthPotionCount +  colour.ANSI_RESET + "\n" +
-                "Damage Potion Count: " + colour.ANSI_RED + p.damagePotionCount +  colour.ANSI_RESET;
+                "Damage Potion Count: " + colour.ANSI_RED + p.damagePotionCount +  colour.ANSI_RESET);
     }
 
     public String GenerateID(){
@@ -98,6 +98,30 @@ public class Player {
             setLevel(getLevel() + 1);
             setXP(getXP() - 10);
             System.out.println("Level up!");
+        }
+    }
+
+    public void PotionPlayerEffect(int num, Potion potion){
+        switch (num) {
+            case 1:
+                if (healthPotionCount > 0) {
+                    setHealth(getHealth() + potion.getHealthPotion());
+                    healthPotionCount--;
+                    System.out.println("Used health potion!");
+                } else {
+                    System.out.println("No health potions left!");
+                }
+                break;
+
+            case 2:
+                if (damagePotionCount > 0) {
+                    setDamage(getDamage() + potion.getDamagePotion());
+                    damagePotionCount--;
+                    System.out.println("Used damage potion!");
+                } else {
+                    System.out.println("No damage potions left!");
+                }
+                break;
         }
     }
 
