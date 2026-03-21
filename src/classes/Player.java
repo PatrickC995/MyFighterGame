@@ -16,6 +16,8 @@ public class Player {
     private int maxHealth;
     private int xp;
     private int level;
+    private int healthPotionCount;
+    private int damagePotionCount;
 
     //Constructor
     public Player() {
@@ -27,9 +29,11 @@ public class Player {
         this.maxHealth = health;
         this.xp = 0;
         this.level = 1;
+        this.healthPotionCount = 0;
+        this.damagePotionCount = 0;
     }
 
-    public Player(String id, String name, String password, int health, int damage, int xp, int level) {
+    public Player(String id, String name, String password, int health, int damage, int xp, int level, int healthPotionCount, int damagePotionCount) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -38,6 +42,8 @@ public class Player {
         this.maxHealth = health;
         this.xp = xp;
         this.level = level;
+        this.healthPotionCount = healthPotionCount;
+        this.damagePotionCount = damagePotionCount;
     }
 
     //Getters and Setters
@@ -49,6 +55,8 @@ public class Player {
     public int getMaxHealth() { return maxHealth; }
     public int getXP() { return xp; }
     public int getLevel() { return level; }
+    public int getHealthPotionCount() {return healthPotionCount;}
+    public int getDamagePotionCount() {return damagePotionCount;}
 
     public void setId(String id) {
         this.id = id == null ? "" : id;
@@ -65,14 +73,18 @@ public class Player {
     }
     public void setXP(int xp) {this.xp = Math.max(0, xp);}
     public void setLevel(int level) {this.level = Math.max(0, level);}
+    public void setHealthPotionCount(int healthPotionCount) {this.healthPotionCount = healthPotionCount;}
+    public void setDamagePotionCount(int damagePotionCount) {this.damagePotionCount = damagePotionCount;}
 
     public String PrintPlayerDetails(Player p) {
-        return "ID: " + p.id + "\n" +
+            return "ID: " + p.id + "\n" +
                 "Name: " + p.name + "\n" +
                 "Health: " + colour.ANSI_GREEN + p.health + colour.ANSI_RESET + "\n" +
                 "Damage: " + colour.ANSI_RED + p.damage + colour.ANSI_RESET + "\n" +
                 "XP: " + colour.ANSI_PURPLE + p.xp + colour.ANSI_RESET + "\n" +
-                "Level: " + colour.ANSI_YELLOW + p.level +  colour.ANSI_RESET;
+                "Level: " + colour.ANSI_YELLOW + p.level +  colour.ANSI_RESET + "\n" +
+                "Health Potion Count: " + colour.ANSI_GREEN + p.healthPotionCount +  colour.ANSI_RESET + "\n" +
+                "Damage Potion Count: " + colour.ANSI_RED + p.damagePotionCount +  colour.ANSI_RESET;
     }
 
     public String GenerateID(){
@@ -91,13 +103,13 @@ public class Player {
 
     //Convert to CSV for saving
     public String toCSV(){
-        return id + "," + name + "," + password + "," + health + "," + damage + "," + xp + "," + level;
+        return id + "," + name + "," + password + "," + health + "," + damage + "," + xp + "," + level + "," + healthPotionCount + "," + damagePotionCount;
     }
 
     //Rebuild from CSV
     public static Player fromCSV(String csv){
         String[] parts = csv.split(",");
-        if(parts.length == 7){
+        if(parts.length == 9){
             return new Player(
                     parts[0],
                     parts[1],
@@ -105,7 +117,10 @@ public class Player {
                     Integer.parseInt(parts[3]),
                     Integer.parseInt(parts[4]),
                     Integer.parseInt(parts[5]),
-                    Integer.parseInt(parts[6]));
+                    Integer.parseInt(parts[6]),
+                    Integer.parseInt(parts[7]),
+                    Integer.parseInt(parts[8])
+            );
         }
         return null;
     }

@@ -3,6 +3,7 @@ package GameMechanics;
 import MyLibrary.colour;
 import classes.Enemy;
 import classes.Player;
+import classes.Potion;
 import MyLibrary.clearScreen;
 
 import java.util.ArrayList;
@@ -27,6 +28,19 @@ public class Combat {
         Enemy enemy = enemies.get(randomIndex);
 
         EnemyEncounter(enemy);
+    }
+
+    public void PotionCount(){
+        Potion potion = new Potion();
+        String drop = potion.randomPotion();
+
+        if (drop.equals("health")) {
+            player.setHealthPotionCount(player.getHealthPotionCount() + 1);
+            System.out.println("You received a health potion!");
+        } else if (drop.equals("damage")) {
+            player.setDamagePotionCount(player.getDamagePotionCount() + 1);
+            System.out.println("You received a damage potion!");
+        }
     }
 
     /**
@@ -104,12 +118,16 @@ public class Combat {
 
         // ENEMY DIES
         if (enemy.getHealth() <= 0) {
+
             clearScreen.clearScreen();
+
             System.out.println("You win!");
             player.setXP(player.getXP() + enemy.getXpLoss());
             System.out.println("you gained " + colour.ANSI_PURPLE + enemy.getXpLoss() + colour.ANSI_RESET + " xp");
             player.LevelUp();
             player.setHealth(player.getMaxHealth());
+
+            PotionCount();
 
             Navigation navigation = createNavigation(player);
             navigation.ExitToMainMenu();

@@ -2,9 +2,9 @@ package classes;
 
 import MyLibrary.randomNumberGenerator;
 
-public class Potion {
+import java.util.Random;
 
-    randomNumberGenerator rng;
+public class Potion {
 
     // Health Potion
     private int healthPotion;
@@ -41,12 +41,23 @@ public class Potion {
     }
 
 
-    public void randomPotion() {
-        switch (rng.randomNumber(4)) {
+    public String randomPotion() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(2) + 1;
+
+        switch (randomNumber) {
             case 1:
-                this.healthPotionCount += 1;
+                return "health";
             case 2:
-                this.damagePotionCount += 1;
+                return "damage";
+            default:
+                return "";
         }
+    }
+
+    public void potionDisplay() {
+        System.out.println(
+                "You have " + healthPotionCount + "health potions\n " +
+                "You have " + damagePotionCount + "damage potions");
     }
 }
