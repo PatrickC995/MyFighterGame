@@ -33,7 +33,7 @@ public class PlayerFileManagerTest {
 
     @Test
     void savePlayer_writesPlayerToFile() throws IOException {
-        Player p = new Player("A1234","Hero","pass123",100,20,0,1);
+        Player p = new Player("A1234","Hero","pass123",100,20,0,1,2,1);
         PlayerFileManager.savePlayer(p);
 
         List<String> lines = Files.readAllLines(TEST_FILE);
